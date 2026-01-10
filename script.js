@@ -144,10 +144,14 @@ function initRadar() {
     const meanPre = orderedScales.map(s => d3.mean(rawData.filter(d => d.scale === s), d => d.pre));
     const meanPost = orderedScales.map(s => d3.mean(rawData.filter(d => d.scale === s), d => d.post));
     
+    // Ajustar domínio do rScale para realçar variações (reduzindo o máximo para "expandir" visualmente)
+    const maxMean = d3.max([...meanPre, ...meanPost]);
+    rScale.domain([0, Math.max(10, maxMean * 0.85)]);
+
     const line = d3.lineRadial().angle((d, i) => i * angleSlice).radius(d => rScale(d)).curve(d3.curveLinearClosed);
 
-    const pathPre = svg.append("path").datum(meanPre).attr("fill", "var(--color-pre)").attr("fill-opacity", 0.3).attr("d", line);
-    const pathPost = svg.append("path").datum(meanPost).attr("fill", "var(--color-highlight)").attr("fill-opacity", 0.5).attr("stroke", "#e0a800").attr("stroke-width", 4).attr("d", line).attr("opacity", 0);
+    const pathPre = svg.append("path").datum(meanPre).attr("fill", "var(--color-pre)").attr("fill-opacity", 0.3).attr("d", line).attr("stroke", "var(--color-pre)").attr("stroke-width", 1).attr("opacity", 0);
+    const pathPost = svg.append("path").datum(meanPost).attr("fill", "var(--color-highlight)").attr("fill-opacity", 0.75).attr("stroke", "#e0a800").attr("stroke-width", 1).attr("d", line).attr("opacity", 0);
 
     return function play() {
         pathPre.attr("opacity", 0).transition().duration(1000).attr("opacity", 1);
@@ -280,7 +284,7 @@ function initSlope() {
         })).filter(d => d.pre !== undefined);
 
         const maxVal = d3.max(data, d => Math.max(d.pre, d.post));
-        y.domain([0, Math.max(12, maxVal * 1.1)]); 
+        y.domain([0, Math.ceil(maxVal * 1.1)]); 
 
         yAxis.transition().duration(500).call(d3.axisLeft(y).ticks(5));
 
