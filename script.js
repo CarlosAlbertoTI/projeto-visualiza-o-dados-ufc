@@ -283,7 +283,7 @@ function initSlope() {
             post: d3.mean(data.filter(d => d.modality === mod), d => d.post)
         })).filter(d => d.pre !== undefined);
 
-        const maxVal = d3.max(data, d => Math.max(d.pre, d.post));
+        const maxVal = d3.max(means, d => Math.max(d.pre, d.post));
         y.domain([0, Math.ceil(maxVal * 1.1)]); 
 
         yAxis.transition().duration(500).call(d3.axisLeft(y).ticks(5));
@@ -292,15 +292,15 @@ function initSlope() {
         svg.append("g").attr("class", "grid-line grid")
             .call(d3.axisLeft(y).tickSize(-(width - margin.left - margin.right)).tickFormat(""));
 
-        const uLines = lineGroup.selectAll(".ind-line").data(data, d => d.id);
-        uLines.enter().append("line").attr("class", "ind-line")
-            .attr("stroke", "#e9ecef").attr("stroke-width", 1)
-            .merge(uLines)
-            .attr("x1", x('Pré')).attr("x2", animate ? x('Pré') : x('Pós'))
-            .attr("y1", d => y(d.pre)).attr("y2", d => y(d.pre))
-            .transition().duration(animate ? 1500 : 500).delay((d,i) => animate ? i*10 : 0)
-            .attr("x2", x('Pós')).attr("y2", d => y(d.post));
-        uLines.exit().remove();
+        // const uLines = lineGroup.selectAll(".ind-line").data(data, d => d.id);
+        // uLines.enter().append("line").attr("class", "ind-line")
+        //     .attr("stroke", "#e9ecef").attr("stroke-width", 1)
+        //     .merge(uLines)
+        //     .attr("x1", x('Pré')).attr("x2", animate ? x('Pré') : x('Pós'))
+        //     .attr("y1", d => y(d.pre)).attr("y2", d => y(d.pre))
+        //     .transition().duration(animate ? 1500 : 500).delay((d,i) => animate ? i*10 : 0)
+        //     .attr("x2", x('Pós')).attr("y2", d => y(d.post));
+        // uLines.exit().remove();
 
         const uMeans = lineGroup.selectAll(".mean-line").data(means);
         uMeans.enter().append("line").attr("class", "mean-line")
