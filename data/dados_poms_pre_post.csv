@@ -1,0 +1,331 @@
+id,modality,scale,pre,post
+1,Judô,Tensão,1.0,0.0
+1,Judô,Depressão,2.0,0.0
+1,Judô,Raiva,0.0,0.0
+1,Judô,Fadiga,3.0,0.0
+1,Judô,Confusão,0.0,0.0
+1,Judô,Vigor,7.0,10.0
+2,Jiu-Jitsu,Tensão,4.0,3.0
+2,Jiu-Jitsu,Depressão,0.0,0.0
+2,Jiu-Jitsu,Raiva,0.0,0.0
+2,Jiu-Jitsu,Fadiga,1.0,4.0
+2,Jiu-Jitsu,Confusão,1.0,2.0
+2,Jiu-Jitsu,Vigor,10.0,8.0
+3,Jiu-Jitsu,Tensão,1.0,1.0
+3,Jiu-Jitsu,Depressão,0.0,0.0
+3,Jiu-Jitsu,Raiva,0.0,0.0
+3,Jiu-Jitsu,Fadiga,3.0,3.0
+3,Jiu-Jitsu,Confusão,0.0,2.0
+3,Jiu-Jitsu,Vigor,7.0,7.0
+4,Jiu-Jitsu,Tensão,0.0,0.0
+4,Jiu-Jitsu,Depressão,0.0,0.0
+4,Jiu-Jitsu,Raiva,0.0,0.0
+4,Jiu-Jitsu,Fadiga,4.0,0.0
+4,Jiu-Jitsu,Confusão,1.0,0.0
+4,Jiu-Jitsu,Vigor,4.0,6.0
+5,Jiu-Jitsu,Tensão,1.0,0.0
+5,Jiu-Jitsu,Depressão,1.0,0.0
+5,Jiu-Jitsu,Raiva,0.0,0.0
+5,Jiu-Jitsu,Fadiga,10.0,8.0
+5,Jiu-Jitsu,Confusão,0.0,0.0
+5,Jiu-Jitsu,Vigor,5.0,13.0
+6,Judô,Tensão,3.0,3.0
+6,Judô,Depressão,1.0,0.0
+6,Judô,Raiva,0.0,0.0
+6,Judô,Fadiga,3.0,1.0
+6,Judô,Confusão,1.0,0.0
+6,Judô,Vigor,10.0,10.0
+7,Judô,Tensão,4.0,4.0
+7,Judô,Depressão,0.0,0.0
+7,Judô,Raiva,0.0,0.0
+7,Judô,Fadiga,8.0,7.0
+7,Judô,Confusão,3.0,1.0
+7,Judô,Vigor,4.0,6.0
+8,Judô,Tensão,0.0,0.0
+8,Judô,Depressão,0.0,0.0
+8,Judô,Raiva,0.0,0.0
+8,Judô,Fadiga,0.0,0.0
+8,Judô,Confusão,0.0,0.0
+8,Judô,Vigor,8.0,13.0
+9,Judô,Tensão,4.0,3.0
+9,Judô,Depressão,0.0,0.0
+9,Judô,Raiva,0.0,0.0
+9,Judô,Fadiga,4.0,6.0
+9,Judô,Confusão,0.0,0.0
+9,Judô,Vigor,9.0,6.0
+10,Judô,Tensão,6.0,2.0
+10,Judô,Depressão,0.0,0.0
+10,Judô,Raiva,3.0,0.0
+10,Judô,Fadiga,2.0,2.0
+10,Judô,Confusão,3.0,0.0
+10,Judô,Vigor,12.0,12.0
+11,Judô,Tensão,1.0,0.0
+11,Judô,Depressão,0.0,0.0
+11,Judô,Raiva,0.0,0.0
+11,Judô,Fadiga,1.0,3.0
+11,Judô,Confusão,0.0,0.0
+11,Judô,Vigor,13.0,10.0
+12,Judô,Tensão,3.0,0.0
+12,Judô,Depressão,0.0,0.0
+12,Judô,Raiva,0.0,0.0
+12,Judô,Fadiga,5.0,5.0
+12,Judô,Confusão,0.0,0.0
+12,Judô,Vigor,10.0,11.0
+13,Judô,Tensão,2.0,0.0
+13,Judô,Depressão,0.0,0.0
+13,Judô,Raiva,0.0,0.0
+13,Judô,Fadiga,2.0,3.0
+13,Judô,Confusão,0.0,0.0
+13,Judô,Vigor,13.0,10.0
+14,Judô,Tensão,0.0,0.0
+14,Judô,Depressão,0.0,0.0
+14,Judô,Raiva,0.0,0.0
+14,Judô,Fadiga,3.0,5.0
+14,Judô,Confusão,0.0,0.0
+14,Judô,Vigor,14.0,12.0
+15,Judô,Tensão,0.0,0.0
+15,Judô,Depressão,0.0,0.0
+15,Judô,Raiva,0.0,0.0
+15,Judô,Fadiga,1.0,0.0
+15,Judô,Confusão,0.0,0.0
+15,Judô,Vigor,16.0,16.0
+16,Judô,Tensão,5.0,3.0
+16,Judô,Depressão,1.0,0.0
+16,Judô,Raiva,0.0,0.0
+16,Judô,Fadiga,5.0,3.0
+16,Judô,Confusão,1.0,0.0
+16,Judô,Vigor,12.0,12.0
+17,Judô,Tensão,5.0,1.0
+17,Judô,Depressão,0.0,0.0
+17,Judô,Raiva,0.0,0.0
+17,Judô,Fadiga,4.0,8.0
+17,Judô,Confusão,3.0,1.0
+17,Judô,Vigor,10.0,12.0
+18,Judô,Tensão,1.0,0.0
+18,Judô,Depressão,0.0,0.0
+18,Judô,Raiva,0.0,0.0
+18,Judô,Fadiga,1.0,1.0
+18,Judô,Confusão,1.0,0.0
+18,Judô,Vigor,9.0,8.0
+19,Judô,Tensão,5.0,2.0
+19,Judô,Depressão,2.0,0.0
+19,Judô,Raiva,0.0,0.0
+19,Judô,Fadiga,3.0,1.0
+19,Judô,Confusão,2.0,0.0
+19,Judô,Vigor,6.0,7.0
+20,Jiu-Jitsu,Tensão,3.0,1.0
+20,Jiu-Jitsu,Depressão,0.0,0.0
+20,Jiu-Jitsu,Raiva,0.0,0.0
+20,Jiu-Jitsu,Fadiga,5.0,2.0
+20,Jiu-Jitsu,Confusão,3.0,0.0
+20,Jiu-Jitsu,Vigor,8.0,10.0
+21,Jiu-Jitsu,Tensão,0.0,0.0
+21,Jiu-Jitsu,Depressão,0.0,0.0
+21,Jiu-Jitsu,Raiva,0.0,0.0
+21,Jiu-Jitsu,Fadiga,0.0,0.0
+21,Jiu-Jitsu,Confusão,0.0,0.0
+21,Jiu-Jitsu,Vigor,14.0,16.0
+22,Jiu-Jitsu,Tensão,3.0,3.0
+22,Jiu-Jitsu,Depressão,0.0,0.0
+22,Jiu-Jitsu,Raiva,0.0,0.0
+22,Jiu-Jitsu,Fadiga,5.0,4.0
+22,Jiu-Jitsu,Confusão,3.0,0.0
+22,Jiu-Jitsu,Vigor,6.0,11.0
+23,Jiu-Jitsu,Tensão,2.0,0.0
+23,Jiu-Jitsu,Depressão,1.0,0.0
+23,Jiu-Jitsu,Raiva,2.0,0.0
+23,Jiu-Jitsu,Fadiga,3.0,3.0
+23,Jiu-Jitsu,Confusão,0.0,0.0
+23,Jiu-Jitsu,Vigor,6.0,11.0
+24,Jiu-Jitsu,Tensão,5.0,4.0
+24,Jiu-Jitsu,Depressão,5.0,2.0
+24,Jiu-Jitsu,Raiva,2.0,2.0
+24,Jiu-Jitsu,Fadiga,9.0,5.0
+24,Jiu-Jitsu,Confusão,3.0,2.0
+24,Jiu-Jitsu,Vigor,5.0,5.0
+25,Jiu-Jitsu,Tensão,3.0,1.0
+25,Jiu-Jitsu,Depressão,1.0,0.0
+25,Jiu-Jitsu,Raiva,2.0,0.0
+25,Jiu-Jitsu,Fadiga,2.0,1.0
+25,Jiu-Jitsu,Confusão,1.0,1.0
+25,Jiu-Jitsu,Vigor,15.0,12.0
+26,Jiu-Jitsu,Tensão,6.0,4.0
+26,Jiu-Jitsu,Depressão,0.0,0.0
+26,Jiu-Jitsu,Raiva,0.0,0.0
+26,Jiu-Jitsu,Fadiga,11.0,8.0
+26,Jiu-Jitsu,Confusão,1.0,0.0
+26,Jiu-Jitsu,Vigor,8.0,9.0
+27,Judô,Tensão,0.0,0.0
+27,Judô,Depressão,0.0,0.0
+27,Judô,Raiva,0.0,0.0
+27,Judô,Fadiga,0.0,0.0
+27,Judô,Confusão,0.0,0.0
+27,Judô,Vigor,8.0,12.0
+28,Judô,Tensão,7.0,0.0
+28,Judô,Depressão,0.0,0.0
+28,Judô,Raiva,0.0,0.0
+28,Judô,Fadiga,8.0,8.0
+28,Judô,Confusão,0.0,0.0
+28,Judô,Vigor,4.0,4.0
+29,Judô,Tensão,4.0,1.0
+29,Judô,Depressão,0.0,0.0
+29,Judô,Raiva,0.0,0.0
+29,Judô,Fadiga,3.0,5.0
+29,Judô,Confusão,0.0,0.0
+29,Judô,Vigor,12.0,11.0
+30,Judô,Tensão,0.0,0.0
+30,Judô,Depressão,0.0,0.0
+30,Judô,Raiva,0.0,0.0
+30,Judô,Fadiga,4.0,5.0
+30,Judô,Confusão,0.0,0.0
+30,Judô,Vigor,13.0,13.0
+31,Judô,Tensão,3.0,0.0
+31,Judô,Depressão,2.0,0.0
+31,Judô,Raiva,0.0,0.0
+31,Judô,Fadiga,0.0,0.0
+31,Judô,Confusão,0.0,0.0
+31,Judô,Vigor,11.0,9.0
+32,Judô,Tensão,5.0,3.0
+32,Judô,Depressão,0.0,0.0
+32,Judô,Raiva,0.0,0.0
+32,Judô,Fadiga,4.0,5.0
+32,Judô,Confusão,1.0,0.0
+32,Judô,Vigor,13.0,10.0
+33,Jiu-Jitsu,Tensão,4.0,2.0
+33,Jiu-Jitsu,Depressão,1.0,0.0
+33,Jiu-Jitsu,Raiva,0.0,0.0
+33,Jiu-Jitsu,Fadiga,5.0,3.0
+33,Jiu-Jitsu,Confusão,3.0,1.0
+33,Jiu-Jitsu,Vigor,12.0,13.0
+34,Jiu-Jitsu,Tensão,2.0,3.0
+34,Jiu-Jitsu,Depressão,0.0,0.0
+34,Jiu-Jitsu,Raiva,1.0,0.0
+34,Jiu-Jitsu,Fadiga,4.0,6.0
+34,Jiu-Jitsu,Confusão,1.0,2.0
+34,Jiu-Jitsu,Vigor,12.0,12.0
+35,Jiu-Jitsu,Tensão,5.0,2.0
+35,Jiu-Jitsu,Depressão,1.0,0.0
+35,Jiu-Jitsu,Raiva,0.0,0.0
+35,Jiu-Jitsu,Fadiga,7.0,5.0
+35,Jiu-Jitsu,Confusão,2.0,1.0
+35,Jiu-Jitsu,Vigor,6.0,7.0
+36,Jiu-Jitsu,Tensão,2.0,2.0
+36,Jiu-Jitsu,Depressão,2.0,2.0
+36,Jiu-Jitsu,Raiva,1.0,2.0
+36,Jiu-Jitsu,Fadiga,6.0,7.0
+36,Jiu-Jitsu,Confusão,0.0,0.0
+36,Jiu-Jitsu,Vigor,10.0,11.0
+37,Jiu-Jitsu,Tensão,5.0,2.0
+37,Jiu-Jitsu,Depressão,2.0,1.0
+37,Jiu-Jitsu,Raiva,0.0,0.0
+37,Jiu-Jitsu,Fadiga,12.0,10.0
+37,Jiu-Jitsu,Confusão,3.0,2.0
+37,Jiu-Jitsu,Vigor,2.0,3.0
+38,Jiu-Jitsu,Tensão,2.0,1.0
+38,Jiu-Jitsu,Depressão,1.0,0.0
+38,Jiu-Jitsu,Raiva,2.0,0.0
+38,Jiu-Jitsu,Fadiga,6.0,3.0
+38,Jiu-Jitsu,Confusão,3.0,2.0
+38,Jiu-Jitsu,Vigor,7.0,5.0
+39,Jiu-Jitsu,Tensão,5.0,3.0
+39,Jiu-Jitsu,Depressão,0.0,0.0
+39,Jiu-Jitsu,Raiva,1.0,0.0
+39,Jiu-Jitsu,Fadiga,8.0,6.0
+39,Jiu-Jitsu,Confusão,1.0,1.0
+39,Jiu-Jitsu,Vigor,9.0,10.0
+40,Judô,Tensão,1.0,0.0
+40,Judô,Depressão,0.0,0.0
+40,Judô,Raiva,0.0,0.0
+40,Judô,Fadiga,0.0,0.0
+40,Judô,Confusão,0.0,0.0
+40,Judô,Vigor,7.0,11.0
+41,Judô,Tensão,1.0,0.0
+41,Judô,Depressão,0.0,0.0
+41,Judô,Raiva,1.0,0.0
+41,Judô,Fadiga,0.0,0.0
+41,Judô,Confusão,0.0,0.0
+41,Judô,Vigor,13.0,12.0
+42,Judô,Tensão,3.0,1.0
+42,Judô,Depressão,0.0,0.0
+42,Judô,Raiva,0.0,0.0
+42,Judô,Fadiga,4.0,4.0
+42,Judô,Confusão,1.0,0.0
+42,Judô,Vigor,6.0,7.0
+43,Judô,Tensão,0.0,0.0
+43,Judô,Depressão,0.0,0.0
+43,Judô,Raiva,0.0,0.0
+43,Judô,Fadiga,0.0,0.0
+43,Judô,Confusão,0.0,0.0
+43,Judô,Vigor,6.0,6.0
+44,Judô,Tensão,2.0,2.0
+44,Judô,Depressão,0.0,0.0
+44,Judô,Raiva,2.0,2.0
+44,Judô,Fadiga,3.0,1.0
+44,Judô,Confusão,1.0,0.0
+44,Judô,Vigor,10.0,12.0
+45,Judô,Tensão,7.0,5.0
+45,Judô,Depressão,6.0,0.0
+45,Judô,Raiva,4.0,0.0
+45,Judô,Fadiga,4.0,4.0
+45,Judô,Confusão,0.0,2.0
+45,Judô,Vigor,8.0,13.0
+46,Judô,Tensão,9.0,10.0
+46,Judô,Depressão,3.0,7.0
+46,Judô,Raiva,0.0,0.0
+46,Judô,Fadiga,7.0,12.0
+46,Judô,Confusão,5.0,14.0
+46,Judô,Vigor,5.0,2.0
+47,Muay Thai,Tensão,0.0,0.0
+47,Muay Thai,Depressão,2.0,2.0
+47,Muay Thai,Raiva,0.0,0.0
+47,Muay Thai,Fadiga,0.0,1.0
+47,Muay Thai,Confusão,0.0,0.0
+47,Muay Thai,Vigor,0.0,0.0
+48,Muay Thai,Tensão,4.0,5.0
+48,Muay Thai,Depressão,3.0,2.0
+48,Muay Thai,Raiva,5.0,5.0
+48,Muay Thai,Fadiga,3.0,10.0
+48,Muay Thai,Confusão,0.0,0.0
+48,Muay Thai,Vigor,8.0,2.0
+49,Muay Thai,Tensão,0.0,0.0
+49,Muay Thai,Depressão,1.0,0.0
+49,Muay Thai,Raiva,0.0,0.0
+49,Muay Thai,Fadiga,1.0,2.0
+49,Muay Thai,Confusão,2.0,0.0
+49,Muay Thai,Vigor,9.0,5.0
+50,Muay Thai,Tensão,11.0,11.0
+50,Muay Thai,Depressão,3.0,5.0
+50,Muay Thai,Raiva,1.0,1.0
+50,Muay Thai,Fadiga,7.0,4.0
+50,Muay Thai,Confusão,4.0,1.0
+50,Muay Thai,Vigor,4.0,5.0
+51,Muay Thai,Tensão,0.0,0.0
+51,Muay Thai,Depressão,0.0,0.0
+51,Muay Thai,Raiva,0.0,0.0
+51,Muay Thai,Fadiga,0.0,0.0
+51,Muay Thai,Confusão,0.0,0.0
+51,Muay Thai,Vigor,0.0,0.0
+52,Muay Thai,Tensão,0.0,0.0
+52,Muay Thai,Depressão,0.0,0.0
+52,Muay Thai,Raiva,0.0,0.0
+52,Muay Thai,Fadiga,0.0,0.0
+52,Muay Thai,Confusão,0.0,0.0
+52,Muay Thai,Vigor,12.0,8.0
+53,Muay Thai,Tensão,0.0,0.0
+53,Muay Thai,Depressão,0.0,0.0
+53,Muay Thai,Raiva,0.0,0.0
+53,Muay Thai,Fadiga,0.0,5.0
+53,Muay Thai,Confusão,0.0,0.0
+53,Muay Thai,Vigor,9.0,7.0
+54,Muay Thai,Tensão,6.0,4.0
+54,Muay Thai,Depressão,3.0,1.0
+54,Muay Thai,Raiva,2.0,2.0
+54,Muay Thai,Fadiga,9.0,6.0
+54,Muay Thai,Confusão,2.0,2.0
+54,Muay Thai,Vigor,1.0,2.0
+55,Muay Thai,Tensão,2.0,1.0
+55,Muay Thai,Depressão,0.0,0.0
+55,Muay Thai,Raiva,0.0,0.0
+55,Muay Thai,Fadiga,0.0,2.0
+55,Muay Thai,Confusão,2.0,0.0
+55,Muay Thai,Vigor,10.0,15.0
