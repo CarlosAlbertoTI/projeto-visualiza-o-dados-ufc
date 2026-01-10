@@ -26,9 +26,9 @@ const tooltip = d3.select("body").append("div").attr("class", "d3-tooltip");
 
 // Cores das modalidades
 const modColors = {
-    'Judô': 'var(--color-judo)',
-    'Jiu-Jitsu': 'var(--color-jiu)',
-    'Muay Thai': 'var(--color-muay)'
+    'Judô': 'var(--color-blue)',
+    'Jiu-Jitsu': 'var(--color-red)',
+    'Muay Thai': 'var(--color-yellow)'
 };
 const getColor = (mod) => modColors[mod] || '#6c757d';
 
