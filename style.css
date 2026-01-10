@@ -2,9 +2,9 @@
     --color-pre: #adb5bd;       /* Cinza (Neutro) */
     --color-post: #212529;      /* Preto (Forte) */
     --color-highlight: #ffc107; /* Amarelo (Destaque) */
-    --color-judo: #0d6efd;      /* Azul Judo */
-    --color-jiu: #d63384;       /* Rosa/Roxo Jiu */
-    --color-muay: #dc3545;      /* Vermelho Muay Thai */
+    --color-judo: #084F8C;      /* Azul Judo */
+    --color-jiu: #D91424;       /* Rosa/Roxo Jiu */
+    --color-muay: #F2B705;      /* Vermelho Muay Thai */
 }
 
 body {
