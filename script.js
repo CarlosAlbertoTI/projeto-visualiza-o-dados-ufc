@@ -198,16 +198,20 @@ function initDumbbell() {
         .call(d3.axisBottom(x).ticks(5).tickSize(-(height - margin.top - margin.bottom)).tickFormat(""));
 
     const groups = svg.selectAll("g.dumbbell").data(summary).enter().append("g");
-    
     // Linha guia de fundo
-    groups.append("line").attr("x1", 0).attr("x2", width).attr("y1", d => y(d.scale)).attr("y2", d => y(d.scale)).attr("stroke", "#f8f9fa").attr("stroke-width", 2);
+    const innerWidth = width - margin.left - margin.right - 2;
+    groups.append("line")
+        .attr("x1", 2)
+        .attr("x2", innerWidth + 2)
+        .attr("y1", d => y(d.scale))
+        .attr("y2", d => y(d.scale))
+        .attr("stroke", "#f8f9fa")
+        .attr("stroke-width", 2);
 
-    // Função auxiliar para determinar cor (Verde = Bom, Vermelho = Ruim)
+    // Função auxiliar para determinar cor (Verde = Aumento, Vermelho = Diminuição)
     const getColorStatus = (d) => {
-        const isBadScale = !['Vigor'].includes(d.scale); // Escalas ruins (Tensão, etc)
         const diff = d.post - d.pre;
-        // Se escala ruim diminuiu OU escala boa aumentou = VERDE, senão VERMELHO
-        return (isBadScale && diff <= 0) || (!isBadScale && diff >= 0) ? "#198754" : "#dc3545";
+        return (diff > 0) ? "var(--color-green)" : "var(--color-red)";
     };
 
     // 1. Linha Conectora
