@@ -43,21 +43,22 @@ modalities.forEach(mod => {
 // --- 1. TMD CHART (DENSITY) ---
 function initTMD() {
     const container = d3.select("#chart-tmd");
+    container.selectAll("*").remove();
     const width = container.node().getBoundingClientRect().width;
-    const height = 350;
-    const margin = {top: 20, right: 30, bottom: 30, left: 40};
+    const height = 380;
+    const margin = {top: 20, right: 20, bottom: 60, left: 50};
 
     const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`).append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-    
+    const innerW = width - margin.left - margin.right;
+    const innerH = height - margin.top - margin.bottom;
+
     // Calcular TMD real
     const tmdData = [];
     const uniqueIds = [...new Set(rawData.map(d => d.id))];
-    
+
     uniqueIds.forEach(id => {
         const user = rawData.filter(d => d.id === id);
-        // Verifica se tem todos os dados necessários
         const hasAllScales = scales.every(s => user.some(u => u.scale === s));
-        
         if(hasAllScales) {
             const getVal = (arr, t) => {
                 const negs = arr.filter(d => d.scale !== 'Vigor');
@@ -73,35 +74,86 @@ function initTMD() {
         }
     });
 
-    // Escala focada na distribuição (Density Plot)
-    const x = d3.scaleLinear().domain([80, 160]).range([0, width - margin.left - margin.right]);
-    const y = d3.scaleLinear().range([height - margin.top - margin.bottom, 0]);
+    if(tmdData.length === 0) {
+        container.append("p").attr("class","chart-caption").text("Dados insuficientes para gerar o gráfico de TMD.");
+        return function() {};
+    }
 
-    // KDE Logic
+    // dominio dinâmico com margem
+    const allVals = tmdData.flatMap(d => [d.pre, d.post]);
+    const xMin = Math.floor(d3.min(allVals) * 0.98);
+    const xMax = Math.ceil(d3.max(allVals) * 1.02);
+
+    const x = d3.scaleLinear().domain([xMin, xMax]).range([0, innerW]);
+    const y = d3.scaleLinear().range([innerH, 0]);
+
+    // KDE
     function kernelDensityEstimator(kernel, X) {
         return function(V) { return X.map(x => [x, d3.mean(V, v => kernel(x - v))]); };
     }
     function kernelEpanechnikov(k) { return v => Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0; }
-    
-    const kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40));
+
+    const ticks = x.ticks(50);
+    const kde = kernelDensityEstimator(kernelEpanechnikov((xMax - xMin) / 20), ticks);
     const densPre = kde(tmdData.map(d => d.pre));
     const densPost = kde(tmdData.map(d => d.post));
 
     const maxDens = d3.max([...densPre, ...densPost], d => d[1]) || 0.05;
-    y.domain([0, maxDens * 1.2]);
+    y.domain([0, maxDens * 1.15]);
 
-    const area = d3.area().curve(d3.curveBasis).x(d => x(d[0])).y0(height - margin.top - margin.bottom).y1(d => y(d[1]));
+    // area generator
+    const area = d3.area().curve(d3.curveBasis).x(d => x(d[0])).y0(innerH).y1(d => y(d[1]));
 
-    svg.append("g").attr("transform", `translate(0,${height - margin.top - margin.bottom})`).call(d3.axisBottom(x));
+    // Axes
+    svg.append("g").attr("transform", `translate(0,${innerH})`).call(d3.axisBottom(x).ticks(8));
+    svg.append("g").call(d3.axisLeft(y).ticks(4));
 
-    const pathPre = svg.append("path").datum(densPre).attr("fill", "var(--color-pre)").attr("opacity", 0.5).attr("d", area);
-    const pathPost = svg.append("path").datum(densPost).attr("fill", "var(--color-highlight)").attr("opacity", 0.7).attr("d", area).attr("opacity", 0);
+    // Axis labels
+    svg.append("text").attr("x", innerW / 2).attr("y", innerH + 45).attr("text-anchor", "middle")
+        .style("font-size", "13px").style("font-weight", "600").text("TMD (Total Mood Disturbance)");
+    svg.append("text").attr("transform", "rotate(-90)").attr("x", -innerH/2).attr("y", -38).attr("text-anchor", "middle")
+        .style("font-size", "12px").text("Densidade");
 
+    // grid
+    svg.append("g").attr("class","grid").call(d3.axisLeft(y).ticks(4).tickSize(-innerW).tickFormat("")).selectAll("line").attr("stroke","#f1f3f5");
+
+    // areas with subtle stroke
+    const preArea = svg.append("path").datum(densPre).attr("fill", "var(--color-pre)").attr("fill-opacity", 0.45).attr("stroke", "var(--color-pre)").attr("stroke-opacity",0.9).attr("stroke-width",1).attr("d", area);
+    const postArea = svg.append("path").datum(densPost).attr("fill", "var(--color-highlight)").attr("fill-opacity", 0.6).attr("stroke", "var(--color-highlight)").attr("stroke-opacity",0.9).attr("stroke-width",1).attr("d", area).attr("opacity",0);
+
+    // Means
+    const meanPre = d3.mean(tmdData, d => d.pre);
+    const meanPost = d3.mean(tmdData, d => d.post);
+
+    const meanGroup = svg.append("g").attr("class","means");
+    meanGroup.append("line").attr("x1", x(meanPre)).attr("x2", x(meanPre)).attr("y1", 0).attr("y2", innerH)
+        .attr("stroke", "var(--color-pre)").attr("stroke-dasharray", "4 3").attr("stroke-width", 1.5).attr("opacity",0.9);
+    meanGroup.append("text").attr("x", x(meanPre)).attr("y", 14).attr("text-anchor","middle").style("font-size","12px").style("fill","var(--color-pre)").style("font-weight","700")
+        .text(`${meanPre.toFixed(1)}`);
+
+    meanGroup.append("line").attr("x1", x(meanPost)).attr("x2", x(meanPost)).attr("y1", 0).attr("y2", innerH)
+        .attr("stroke", "var(--color-highlight)").attr("stroke-dasharray", "4 3").attr("stroke-width", 1.5).attr("opacity",0);
+    meanGroup.append("text").attr("x", x(meanPost)).attr("y", 35).attr("text-anchor","middle").style("font-size","12px").style("fill","var(--color-highlight)").style("font-weight","700").attr("opacity",0)
+        .text(`${meanPost.toFixed(1)}`);
+
+    // legend
+    const legend = svg.append("g").attr("transform", `translate(${innerW - 140},0)`);
+    legend.append("rect").attr("width", 140).attr("height", 60).attr("rx",6).attr("fill","#fff").attr("stroke","#e9ecef");
+    legend.append("rect").attr("x",10).attr("y",10).attr("width",14).attr("height",14).attr("fill","var(--color-pre)").attr("opacity",0.8);
+    legend.append("text").attr("x",30).attr("y",22).text("Pré").style("font-size","12px").style("font-weight","600");
+    legend.append("rect").attr("x",10).attr("y",32).attr("width",14).attr("height",14).attr("fill","var(--color-highlight)").attr("opacity",0.9);
+    legend.append("text").attr("x",30).attr("y",44).text("Pós").style("font-size","12px").style("font-weight","600");
+
+    // Animation play function
     return function play() {
-        pathPre.attr("opacity", 0).transition().duration(1000).attr("opacity", 0.5);
-        pathPost.attr("d", area(densPre)).attr("opacity", 0) 
-                .transition().delay(500).duration(1500).ease(d3.easeCubicOut)
-                .attr("opacity", 0.7).attr("d", area(densPost));
+        preArea.attr("opacity",0).transition().duration(900).attr("opacity",0.45);
+        postArea.attr("opacity",0).transition().delay(400).duration(1200).attr("opacity",0.6);
+
+        meanGroup.selectAll("line").filter((d,i)=>i===1).attr("opacity",0).transition().delay(700).duration(800).attr("opacity",0.9);
+        meanGroup.selectAll("text").filter((d,i)=>i===1).attr("opacity",0).transition().delay(700).duration(800).attr("opacity",1);
+
+        // ensure tooltip hidden at start
+        d3.selectAll(".d3-tooltip").style("opacity", 0);
     };
 }
 
