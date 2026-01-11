@@ -163,7 +163,7 @@ function initRadar() {
     const width = container.node().getBoundingClientRect().width;
     
     // AUMENTAR AINDA MAIS A ALTURA
-    const height = 700; // Aumentado para 700px
+    const height = 500; // Aumentado para 500px
     
     // Ajuste de margem
     const margin = 50; 
@@ -200,10 +200,14 @@ function initRadar() {
     const maxMean = d3.max([...meanPre, ...meanPost]);
     rScale.domain([0, Math.max(10, maxMean * 0.85)]);
 
-    const line = d3.lineRadial().angle((d, i) => i * angleSlice).radius(d => rScale(d)).curve(d3.curveLinearClosed);
+    const line = d3.areaRadial()
+        .angle((d, i) => i * angleSlice)
+        .innerRadius(0)
+        .outerRadius(d => rScale(d))
+        .curve(d3.curveLinearClosed);
 
     const pathPre = svg.append("path").datum(meanPre).attr("fill", "var(--color-pre)").attr("fill-opacity", 0.3).attr("d", line).attr("stroke", "var(--color-pre)").attr("stroke-width", 1).attr("opacity", 0);
-    const pathPost = svg.append("path").datum(meanPost).attr("fill", "var(--color-highlight)").attr("fill-opacity", 0.75).attr("stroke", "#e0a800").attr("stroke-width", 1).attr("d", line).attr("opacity", 0);
+    const pathPost = svg.append("path").datum(meanPost).attr("fill", "var(--color-highlight)").attr("fill-opacity", 0.6).attr("stroke", "var(--color-highlight)").attr("stroke-width", 1).attr("d", line).attr("opacity", 1);
 
     return function play() {
         pathPre.attr("opacity", 0).transition().duration(1000).attr("opacity", 1);
@@ -329,7 +333,10 @@ function initSlope() {
     
     const yAxis = svg.append("g");
 
-    const lineGroup = svg.append("g");
+    // Layers: grid (back) -> inner individual lines -> mean lines (top)
+    const gridGroup = svg.append("g").attr("class", "grid-line grid");
+    // const innerLinesGroup = svg.append("g").attr("class", "inner-lines");
+    const meanLinesGroup = svg.append("g").attr("class", "mean-lines");
     
     function update(selectedScale, animate=true) {
         const data = rawData.filter(d => d.scale === selectedScale);
@@ -337,16 +344,16 @@ function initSlope() {
             modality: mod, 
             pre: d3.mean(data.filter(d => d.modality === mod), d => d.pre), 
             post: d3.mean(data.filter(d => d.modality === mod), d => d.post)
-        })).filter(d => d.pre !== undefined);
+        })).filter(d => d.pre !== undefined && !isNaN(d.pre));
 
-        const maxVal = d3.max(means, d => Math.max(d.pre, d.post));
+        const maxVal = d3.max(means, d => Math.max(d.pre, d.post)) || 0;
         y.domain([0, Math.ceil(maxVal * 1.1)]); 
 
         yAxis.transition().duration(500).call(d3.axisLeft(y).ticks(5));
 
-        svg.selectAll(".grid-line").remove();
-        svg.append("g").attr("class", "grid-line grid")
-            .call(d3.axisLeft(y).tickSize(-(width - margin.left - margin.right)).tickFormat(""));
+        // draw grid into the gridGroup (keeps it behind lines)
+        gridGroup.selectAll("*").remove();
+        gridGroup.call(d3.axisLeft(y).tickSize(-(width - margin.left - margin.right)).tickFormat("")).selectAll("line").attr("stroke","#efefef");
 
         // const uLines = lineGroup.selectAll(".ind-line").data(data, d => d.id);
         // uLines.enter().append("line").attr("class", "ind-line")
@@ -358,7 +365,8 @@ function initSlope() {
         //     .attr("x2", x('Pós')).attr("y2", d => y(d.post));
         // uLines.exit().remove();
 
-        const uMeans = lineGroup.selectAll(".mean-line").data(means);
+        // mean lines (on top)
+        const uMeans = meanLinesGroup.selectAll(".mean-line").data(means);
         uMeans.enter().append("line").attr("class", "mean-line")
             .attr("stroke", d => getColor(d.modality))
             .attr("stroke-width", 4).attr("stroke-linecap", "round")
