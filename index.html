@@ -34,8 +34,12 @@
                 <div class="col-md-4 mt-3">
                     <p class="text-muted">Escala ajustada para focar na distribuição da densidade.</p>
                     <div class="small text-muted mt-3">
-                        O gráfico mostra a distribuição do Total Mood Disturbance (TMD) pré e pós prática. Valores maiores de TMD indicam pior estado psicológico. As áreas mostram a densidade das observações. <br> 
-                        As linhas tracejadas marcam as médias, evidenciando deslocamentos gerais da distribuição.
+                        O gráfico mostra a distribuição do Total Mood Disturbance (TMD) pré e pós prática:
+                        <ul>
+                            <li><strong>Valores:</strong> Valores maiores de TMD indicam pior estado psicológico.</li>
+                            <li><strong>Linhas tracejadas:</strong> Marcam as médias, evidenciando deslocamentos gerais da distribuição.</li>
+                            <li><strong>Áreas:</strong> Mostram a densidade das observações.</li>
+                        </ul> 
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -49,19 +53,23 @@
         <div class="chart-card">
             <div class="d-flex align-items-center mb-4">
                 <h2 class="fw-bold m-0">2. O Perfil Iceberg</h2>
-                <!-- <span class="scale-badge">Escala Fixa: 0-18</span> -->
+                <span class="scale-badge">Escala dinâmica</span>
             </div>
             
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <p class="lead mb-3">Comparação Pré vs Pós</p>
-                    <p class="text-muted mb-3">Gráfico com escala fixa (0–18) para preservar a proporcionalidade entre dimensões e evitar que valores pequenos pareçam exagerados.</p>
+                    <p class="text-muted mb-3">
+                        Gráfico radial com escala de referência 0–18 para preservar proporcionalidade entre dimensões.<br>
+                        Para realçar variações, o raio é ajustado dinamicamente (domínio ajustado dinamicamente com base nas médias),
+                        mantendo marcas concêntricas em 5, 10 e 15.<br>
+                        Os rótulos foram deslocados para for.a e são exibidos em fonte maior para melhor leitura.<br>
+                        A dimensão "Vigor" é posicionada por último para enfatizar o perfil iceberg.
+                    </p>
                     <ul class="text-muted small mb-3">
-                        <li><strong>Vigor:</strong> ponta do iceberg — indica maior energia percebida.</li>
-                        <br>
-                        <li><strong>Avaliação emocional:</strong> verifique deslocamentos.</li>
-                        <br>
-                        <li><strong>Áreas:</strong> representam intensidade relativa entre domínios.</li>
+                        <li><strong>Vigor:</strong> Ponta do iceberg — indica maior energia percebida.</li>
+                        <li><strong>Avaliação emocional:</strong> Verifique deslocamentos.</li>
+                        <li><strong>Áreas:</strong> Representam intensidade relativa entre domínios.</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
