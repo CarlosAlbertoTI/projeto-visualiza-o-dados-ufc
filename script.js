@@ -307,7 +307,6 @@ function initDumbbell() {
         lbl.attr("x", d => (x(d.pre)+x(d.post))/2).attr("opacity", 0).transition().delay(1200).duration(500).attr("opacity", 1);
     };
 }
-
 // --- INIT SLOPE GRID ---
 function initSlope() {
     const container = d3.select("#slope-grid");
@@ -340,34 +339,38 @@ function initSlope() {
         const margin = {top: 20, right: 30, bottom: 30, left: 30};
         
         const svg = wrapper.append("svg").attr("viewBox", `0 0 ${width} ${height}`).append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-        const data = rawData.filter(d => d.scale === scaleName);
         
+        // Calculate average pre and post values for each modality
+        const data = modalities.map(mod => {
+            const filteredData = rawData.filter(d => d.scale === scaleName && d.modality === mod);
+            return {
+                modality: mod,
+                pre: d3.mean(filteredData, d => d.pre) || 0,
+                post: d3.mean(filteredData, d => d.post) || 0
+            };
+        });
+
         const x = d3.scalePoint().domain(['Pré', 'Pós']).range([0, width - margin.left - margin.right]).padding(0.2);
-        const y = d3.scaleLinear().domain([0, 18]).range([height - margin.top - margin.bottom, 0]);
+        const y = d3.scaleLinear().domain([0, 12]).range([height - margin.top - margin.bottom, 0]);
 
         svg.append("g").attr("transform", `translate(0,${height - margin.top - margin.bottom})`).call(d3.axisBottom(x).tickSize(0)).select(".domain").remove();
         svg.selectAll(".tick text").style("font-weight", "bold").style("fill", "#6c757d");
         
-        // Gradient Defs
-        const defs = svg.append("defs");
-        const gradientId = `grad-${scaleName.replace(/\s+/g, '')}`;
-        const gradient = defs.append("linearGradient").attr("id", gradientId).attr("x1", "0%").attr("y1", "0%").attr("x2", "100%").attr("y2", "0%");
-        gradient.append("stop").attr("offset", "0%").attr("stop-color", colorPre);       
-        gradient.append("stop").attr("offset", "100%").attr("stop-color", colorPost);    
+        svg.append("g").call(d3.axisLeft(y).ticks(5));
 
         svg.selectAll(".slope-line")
             .data(data).enter().append("line").attr("class", "slope-line")
             .attr("data-modality", d => d.modality)
             .attr("x1", x('Pré')).attr("x2", x('Pós')).attr("y1", d => y(d.pre)).attr("y2", d => y(d.post))
-            .attr("stroke", `url(#${gradientId})`).attr("stroke-width", 1.5).attr("opacity", 0.6);
+            .attr("stroke", d => getModColor(d.modality)).attr("stroke-width", 1.5).attr("opacity", 0.6);
             
         svg.selectAll(".dot-pre").data(data).enter().append("circle").attr("class", "slope-dot")
             .attr("data-modality", d => d.modality)
-            .attr("cx", x('Pré')).attr("cy", d => y(d.pre)).attr("r", 2.5).attr("fill", colorPre).attr("opacity", 0.6);
+            .attr("cx", x('Pré')).attr("cy", d => y(d.pre)).attr("r", 2.5).attr("fill", d => getModColor(d.modality)).attr("opacity", 0.6);
             
         svg.selectAll(".dot-post").data(data).enter().append("circle").attr("class", "slope-dot")
             .attr("data-modality", d => d.modality)
-            .attr("cx", x('Pós')).attr("cy", d => y(d.post)).attr("r", 2.5).attr("fill", colorPost).attr("opacity", 0.6);
+            .attr("cx", x('Pós')).attr("cy", d => y(d.post)).attr("r", 2.5).attr("fill", d => getModColor(d.modality)).attr("opacity", 0.6);
     });
 
     function updateHighlight() {
