@@ -7,18 +7,20 @@
   --color-yellow: #f2b705;   /* Amarelo */
   --color-green: #198754;    /* Verde */
   --color-bg: #f8f9fa;       /* Fundo Claro */
+  --color-border: #dee2e6;   /* Bordas Claras */
+  --color-gray-light: #6c757d; /* Cinza Claro */
 }
 
 body {
   font-family: "Inter", sans-serif;
   background-color: var(--color-bg);
-  color: #212529;
+  color: var(--color-post);
   overflow-x: hidden;
 }
 
 /* --- HERO SECTION (NOVA COMPACTA) --- */
 .hero-small {
-    background: #212529;
+    background: var(--color-post);
     color: white;
     padding: 4rem 0;
     text-align: center;
@@ -33,7 +35,7 @@ body {
 /* --- COMPONENTES DE TEXTO E LAYOUT --- */
 .section-title {
     font-weight: 800;
-    color: #212529;
+    color: var(--color-post);
     margin-bottom: 1rem;
     position: relative;
     display: inline-block;
@@ -61,7 +63,7 @@ body {
 .chart-desc {
     max-width: 700px;
     margin: 0 auto 2rem auto;
-    color: #6c757d;
+    color: var(--color-gray-light);
 }
 
 .info-box {
@@ -139,7 +141,7 @@ body {
 
 /* Botões do Slope */
 .modality-btn {
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--color-border);
     background: white;
     color: #495057;
     padding: 8px 20px;
@@ -154,17 +156,17 @@ body {
     background: #f1f3f5;
 }
 .modality-btn.active {
-    background: #212529;
-    color: #ffc107;
-    border-color: #212529;
+    background: var(--color-post);
+    color: var(--color-highlight);
+    border-color: var(--color-post);
 }
 
 /* --- UTILITÁRIOS --- */
 .border-start-md {
-    border-left: 1px solid #dee2e6;
+    border-left: 1px solid var(--color-border);
 }
 @media (max-width: 768px) {
-    .border-start-md { border-left: none; border-top: 1px solid #dee2e6; padding-top: 2rem; margin-top: 2rem; }
+    .border-start-md { border-left: none; border-top: 1px solid var(--color-border); padding-top: 2rem; margin-top: 2rem; }
 }
 
 /* Animação de Scroll */
@@ -196,7 +198,7 @@ body {
 .axis text {
     font-family: "Inter", sans-serif;
     font-size: 12px;
-    fill: #6c757d;
+    fill: var(--color-gray-light);
 }
 .axis path, .axis line {
     stroke: #e9ecef;
