@@ -34,7 +34,7 @@ const modColors = {
     'Jiu-Jitsu': 'var(--color-red)',
     'Muay Thai': 'var(--color-yellow)'
 };
-const getModColor = (mod) => modColors[mod] || '#6c757d';
+const getModColor = (mod) => modColors[mod] || 'var(--color-gray-light)';
 
 // --- INIT ENROLLMENT (Gráfico de Barras) ---
 function initEnrollment() {
@@ -254,8 +254,8 @@ function initDumbbell() {
     const container = d3.select("#chart-dumbbell");
     container.selectAll("*").remove();
     const width = container.node().getBoundingClientRect().width;
-    const height = 400; 
-    const margin = {top: 20, right: 30, bottom: 30, left: 100};
+    const height = 500; 
+    const margin = {top: 20, right: 30, bottom: 30, left: 75};
     
     const svg = container.append("svg").attr("viewBox", `0 0 ${width} ${height}`).append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -265,7 +265,7 @@ function initDumbbell() {
         post: d3.mean(rawData.filter(x => x.scale === s), x => x.post)
     })).sort((a,b) => (b.post+b.pre) - (a.post+a.pre));
 
-    const maxVal = d3.max(summary, d => Math.max(d.pre, d.post)) * 1.15;
+    const maxVal = d3.max(summary, d => Math.max(d.pre, d.post)) * 1.2;
     const x = d3.scaleLinear().range([0, width - margin.left - margin.right]).domain([0, maxVal]);
     const y = d3.scaleBand().range([0, height - margin.top - margin.bottom]).domain(summary.map(d => d.scale)).padding(1);
 
