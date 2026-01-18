@@ -289,10 +289,22 @@ function initDumbbell() {
     const cPre = groups.append("circle").attr("cy", d => y(d.scale)).attr("r", 6).attr("fill", "white").attr("stroke", "#adb5bd").attr("stroke-width", 2);
     const cPost = groups.append("circle").attr("cy", d => y(d.scale)).attr("r", 8).attr("fill", d => getColorStatus(d)).attr("stroke", "white").attr("stroke-width", 2);
 
+    const lbl = groups.append("text")
+        .attr("y", d => y(d.scale) - 18) 
+        .text(d => {
+            const val = (d.post-d.pre).toFixed(1);
+            return val > 0 ? `+${val}` : val; 
+        })
+        .attr("text-anchor", "middle")
+        .style("font-size", "15px")   
+        .style("font-weight", "800") 
+        .style("fill", d => getColorStatus(d)); // Texto na mesma cor da bolinha
+
     return function play() {
         connector.attr("x1", d => x(d.pre)).attr("x2", d => x(d.pre)).transition().duration(1000).attr("x2", d => x(d.post));
         cPre.attr("cx", d => x(d.pre)).attr("opacity",0).transition().duration(500).attr("opacity",1);
         cPost.attr("cx", d => x(d.post)).attr("opacity",0).transition().delay(800).duration(500).attr("opacity",1);
+        lbl.attr("x", d => (x(d.pre)+x(d.post))/2).attr("opacity", 0).transition().delay(1200).duration(500).attr("opacity", 1);
     };
 }
 
